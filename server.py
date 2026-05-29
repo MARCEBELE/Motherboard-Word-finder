@@ -186,6 +186,22 @@ class Handler(SimpleHTTPRequestHandler):
             else:
                 threading.Thread(target=run_import_job, daemon=True).start()
             return self._json({"started": True})
+        if self.path == "/api/delete_board":
+            ln = int(self.headers.get("Content-Length") or 0)
+            payload = {}
+            if ln:
+                try:
+                    payload = json.loads(self.rfile.read(ln) or b"{}")
+                except Exception:
+                    payload = {}
+            bid = payload.get("id", "")
+            if not ID_RE.match(bid):
+                return self._json({"error": "bad id"}, 400)
+            try:
+                boards_store.delete_board(bid)
+            except Exception as e:
+                return self._json({"error": str(e)}, 404)
+            return self._json({"ok": True, "boards": boards_store.list_boards()})
         return self._json({"error": "unknown"}, 404)
 
 

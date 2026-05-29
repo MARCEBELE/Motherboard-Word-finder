@@ -42,6 +42,7 @@
   .btn { background:#1f2630; border:1px solid var(--line); color:var(--txt); padding:7px 12px;
          border-radius:7px; cursor:pointer; font-size:13px; white-space:nowrap; }
   .btn:hover { border-color:var(--accent); }
+  .btn.danger:hover { border-color:#ff5d5d; color:#ff8a8a; }
   #addBoard { flex:0 0 auto; }
   #overlay { position:fixed; inset:0; background:rgba(0,0,0,.6); display:flex; align-items:center;
              justify-content:center; z-index:50; }
@@ -65,6 +66,7 @@
       <div class="brow">
         <button class="btn" id="importBoard" style="flex:1" title="Load a board someone shared with you (.zip)">Import</button>
         <button class="btn" id="exportBoard" style="flex:1" title="Save this board to a .zip file to share">Export</button>
+        <button class="btn danger" id="deleteBoard" title="Delete the selected board (cannot be undone)">Delete</button>
       </div>
       <input id="q" placeholder="Type a label, e.g. PU1" autocomplete="off" spellcheck="false">
       <div id="stat"></div>

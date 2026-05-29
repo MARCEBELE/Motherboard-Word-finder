@@ -205,6 +205,18 @@ $('exportBoard').onclick = () => {
   a.href = '/api/export/' + encodeURIComponent(id);
   document.body.appendChild(a); a.click(); a.remove();
 };
+
+$('deleteBoard').onclick = async () => {
+  const sel = $('board'); const id = sel.value;
+  if(!id) return;
+  const name = sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].textContent : id;
+  if(!confirm('Delete board "' + name + '"?\n\nThis permanently removes its OCR data and photo copies from the tool. It cannot be undone.\n(Your original photo folder is not touched.)')) return;
+  try {
+    const r = await api('/api/delete_board', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ id }) });
+    if(r.error){ overlay('Error: ' + r.error, true); return; }
+  } catch(e){ overlay('Error: ' + e.message, true); return; }
+  await loadBoards();
+};
 async function pollStatus(){
   let s;
   try { s = await api('/api/status'); } catch(e){ overlay('Error: ' + e.message, true); return; }

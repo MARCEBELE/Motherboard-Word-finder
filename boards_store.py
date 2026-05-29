@@ -51,6 +51,16 @@ def get_board(bid):
         return json.load(f)
 
 
+def delete_board(bid):
+    """Remove a board from the registry and delete its folder."""
+    reg = _load_reg()
+    if not any(b["id"] == bid for b in reg["boards"]):
+        raise ValueError("Board not found.")
+    reg["boards"] = [b for b in reg["boards"] if b["id"] != bid]
+    _save_reg(reg)
+    shutil.rmtree(os.path.join(BOARDS, bid), ignore_errors=True)
+
+
 def add_board(folder, name=None, progress=None):
     """OCR a folder of photos and register it as a new board. Returns its meta."""
     if not os.path.isdir(folder):
