@@ -1,10 +1,12 @@
 # Board Word Finder
 
 Find a component on a circuit board by typing its silkscreen label. Take photos of a
-motherboard, let the tool read every printed label (OCR), then search a name like `PU1`
-and it zooms to that spot and draws a box around it.
+board, let the tool read every printed label (OCR), then search a name like `PU1` and it
+zooms to that spot and draws a box around it.
 
-Built for laptop board repair, where you often need to locate a part with schematic avilable but doesnt have boardview 
+Built for laptop board repair — especially when you have the **schematic** (so you know a
+component's name) but **no boardview** to show where that part physically sits. Snap a few
+photos and this finds the part on the board for you.
 
 ## What it does
 
@@ -12,8 +14,8 @@ Built for laptop board repair, where you often need to locate a part with schema
 - Handles labels printed at **any angle** (upright, sideways, upside-down).
 - **Search** with typo tolerance (it knows OCR mixes up `O/0`, `I/1`, `S/5`...).
 - Keep **multiple boards** and switch between them.
-- **Share** a board you already processed with someone else as a single file — they
-  import it and search instantly, with no OCR and no need for the original photos.
+- **Share** a board you already processed as a single file — someone else imports it and
+  searches instantly, with no OCR and no need for the original photos.
 
 ## Requirements
 
@@ -22,41 +24,40 @@ Built for laptop board repair, where you often need to locate a part with schema
 
 ## Install
 
-1. Download / clone this folder.
-2. Double-click **`setup.bat`** (installs everything into a local `.venv`).
+1. Download or clone this repo.
+2. Double-click **`setup.bat`** — it installs everything into a local `.venv`.
 
 ## Run
 
-Double-click **`Start Word Finder.bat`**. Your browser opens the tool. Keep the small
-black window open while using it; close it to stop.
+Double-click **`Start Word Finder.bat`**. Your browser opens the tool. Keep the small black
+window open while using it; close it to stop.
 
 ## Using it
 
-- **Pick a board** from the dropdown, then type a label (e.g. `PU1`) and press search.
-- **Prev / Next** flip through the board's photos (`Photo 3 / 8`).
-- **Click a match** in the list (or press Enter) to jump to a specific hit.
-- **Show all labels** outlines everything the tool found; **Fit image** zooms out.
+1. **Pick a board** from the dropdown (top-left).
+2. **Type a label** (e.g. `PU1`) — matches are listed; click one to jump to it.
+3. **Prev / Next** flip through the board's photos; **Fit image** zooms out; **Show all
+   labels** outlines everything found.
 
 ### Add a board
 
-Click **+ Add**, choose the folder containing that board's photos. Processing 8 large
-photos takes a few minutes (a progress message shows). Use straight-on, sharp, well-lit
-photos for best results.
+Click **+ Add** and choose the folder with that board's photos. Processing 8 large photos
+takes a few minutes (a progress bar shows). Sharp, straight-on, well-lit photos read best.
 
-### Share a board
+### Share / manage boards
 
-- **Export**: select a board and click **Export** — you get a `.zip` to send to anyone.
-- **Import**: click **Import** and pick a `.zip` someone sent you. It
-  appears in your dropdown immediately (no OCR needed).
+- **Export** — save the selected board as a `.zip` to send to anyone.
+- **Import** — load a `.zip` someone sent you; it appears in your dropdown instantly.
+- **Delete** — remove a board you no longer need (your original photo folder is untouched).
 
-Share boards as these `.zip` files (e.g. via GitHub Releases or a link) — board photos
-are **not** committed to the repo.
+Boards travel as these `.zip` files (e.g. via GitHub Releases) — board photos are **not**
+committed to the repo.
 
 ## How it works
 
-- `server.py` — small local web server (`http://localhost:8731`) + API.
-- `ocr_lib.py` — tiles each photo, runs OCR at 0/90/180/270 degrees, maps boxes back,
-  de-duplicates.
+- `server.py` — small local web server (`http://localhost:8731`) plus a tiny API.
+- `ocr_lib.py` — tiles each photo, runs OCR at 0/90/180/270 degrees, maps boxes back, and
+  de-duplicates. Very large photos are downscaled to keep things fast.
 - `boards_store.py` — stores each board under `app/boards/<id>/` and packs/unpacks the
   shareable `.zip` files.
 - `app/viewer.html` + `app/app.js` — the search interface (HTML canvas).
@@ -66,4 +67,4 @@ Command line (optional): `python build_index.py "C:\path\to\photos" --name "My B
 ## Notes
 
 - OCR is very good but not perfect; search is typo-tolerant and you confirm visually.
-- All processing is local — nothing is uploaded.
+- Everything runs locally — nothing is uploaded.
