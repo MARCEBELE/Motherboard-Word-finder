@@ -41,8 +41,20 @@ window open while using it; close it to stop.
 
 ### Add a board
 
-Click **+ Add** and choose the folder with that board's photos. Processing 8 large photos
-takes a few minutes (a progress bar shows). Sharp, straight-on, well-lit photos read best.
+Click **+ Add** and choose the folder with that board's photos. The tool reads **all**
+photos in the folder as one board, so put every shot of that board (both sides, several
+shots each) in the same folder. Processing a folder of large photos takes a few minutes
+(a progress bar shows).
+
+**Photo tips — this matters a lot for accuracy:**
+
+- **Use several overlapping close-up photos per side, not one wide shot of the whole side.**
+  Silkscreen text is tiny; a single full-board photo usually doesn't have enough detail to
+  read it. Cover each side with multiple shots — the tool indexes them all and you flip
+  through them with Prev / Next.
+- **Zoom 2x–3x on your phone** before each shot. This avoids the wide-angle lens distortion
+  that warps text near the edges and gives sharper, more readable characters.
+- Keep shots **sharp, straight-on, and well-lit**, and avoid glare on the board.
 
 ### Share / manage boards
 
