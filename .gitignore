@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Generated board data (each user adds or imports their own boards)
+app/boards/
+
+# Exported / shared board files
+*.zip
+
+# Your own board photos / scratch — do NOT commit these (share boards via Export instead)
+insp 5441/
+insp 5441 - Copy/
+photos/
+Test/
+*.jpg
+*.jpeg
+*.png
+
+# Editor / local tooling
+.claude/
+
+# OS junk
+Thumbs.db
+.DS_Store

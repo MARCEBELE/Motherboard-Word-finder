@@ -1,0 +1,5 @@
+# Board Word Finder dependencies
+rapidocr>=3.0      # PP-OCRv4 OCR engine (pulls in onnxruntime)
+opencv-python>=4.5 # image tiling / rotation (cv2)
+numpy
+Pillow             # EXIF-correct image loading
