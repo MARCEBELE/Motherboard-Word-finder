@@ -4,8 +4,7 @@ Find a component on a circuit board by typing its silkscreen label. Take photos 
 motherboard, let the tool read every printed label (OCR), then search a name like `PU1`
 and it zooms to that spot and draws a box around it.
 
-Built for laptop/phone board repair, where you often need to locate a part (e.g. `PU1`,
-`U3`, `LA24`) on a dense board and the printed text points in every direction.
+Built for laptop board repair, where you often need to locate a part Without schematic avilable 
 
 ## What it does
 
